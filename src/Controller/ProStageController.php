@@ -17,10 +17,30 @@ class ProStageController extends AbstractController
     }
 
     /**
+     * @Route("/entreprises", name="ProStage_entreprises")
+     */
+    public function afficherEntreprises(): Response
+    {
+        
+        return $this->render('pro_stage/afficherEntreprises.html.twig');
+    }
+
+    /**
+     * @Route("/formations", name="ProStage_formations")
+     */
+    public function afficherFormations(): Response
+    {
+        
+        return $this->render('pro_stage/afficherFormations.html.twig');
+    }
+
+    /**
      * @Route("/stage345", name="ProStage_stage345")
      */
     public function afficherDetailStage(): Response
     {
-        return $this->render('pro_stage/affichageDetailStage.html.twig');
+        
+        return $this->render('pro_stage/affichageDetailStage.html.twig',
+        ['idRessource' => 345]);
     }
 }
