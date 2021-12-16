@@ -1,10 +1,9 @@
-<html>
+{% extends 'base.html.twig' %}
+{% block body %}
 	<h1> Bienvenue sur ProStage </h1>
-
 	<p>
 		voici quelques stages:
 	</p>
-
 	<ul>
 		<li>
 			<a href="{{path('ProStage_stage', {id:5})}}"> Stage developpeur fullstack (H/F) </a>
@@ -13,4 +12,4 @@
 			<a href="{{path('ProStage_stage', {id:345})}}"> Stage developpeur java (H/F) </a>
 		</li>
 	</ul>
-</html>
+{% endblock %}

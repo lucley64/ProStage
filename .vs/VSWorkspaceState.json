@@ -6,6 +6,6 @@
     "\\templates",
     "\\templates\\pro_stage"
   ],
-  "SelectedNode": "\\src\\Controller\\ProStageController.php",
+  "SelectedNode": "\\templates\\base.html.twig",
   "PreviewInSolutionExplorer": false
 }
