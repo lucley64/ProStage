@@ -1,18 +1,42 @@
 {% extends 'base.html.twig' %}
 {% block nomPage %}
-	<h1> Bienvenue sur ProStage </h1>
+	<h1>
+		Bienvenue sur ProStage
+	</h1>
 {% endblock %}
 
 {% block liste %}
 	<p>
 		voici quelques stages:
 	</p>
-	<ul>
-		<li>
-			<a href="{{path('ProStage_stage', {id:5})}}"> Stage developpeur fullstack (H/F) </a>
-		</li>
-		<li>
-			<a href="{{path('ProStage_stage', {id:345})}}"> Stage developpeur java (H/F) </a>
-		</li>
-	</ul>
-{% endblock %}
+
+	<table>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Titre</th>
+				<th>Entreprise</th>
+				<th>Adresse Entreprise</th>
+			</tr>
+		</thead>
+		<thbody>
+			{% for stage in stages %}
+				<tr>
+
+					<td>
+						<a class="nav-link" href="{{path('ProStage_stage', {id:stage.id})}}">
+							{{stage.id}}</td>
+					</td>
+					<td>
+						{{stage.titre}}
+					</td>
+					<td>
+						{{stage.entreprise.nom}}
+					</td>
+					<td>
+						{{stage.entreprise.adresse}}</td>
+				</tr>
+			</a>
+		</tr>
+	{% endfor %}
+</thbody></table>{% endblock %}
