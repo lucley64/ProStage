@@ -25,7 +25,8 @@
 
 					<td>
 						<a class="nav-link" href="{{path('ProStage_stage', {id:stage.id})}}">
-							{{stage.id}}</td>
+							{{stage.id}}
+						</a>
 					</td>
 					<td>
 						{{stage.titre}}
@@ -36,7 +37,7 @@
 					<td>
 						{{stage.entreprise.adresse}}</td>
 				</tr>
-			</a>
-		</tr>
-	{% endfor %}
-</tbody></table>{% endblock %}
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
