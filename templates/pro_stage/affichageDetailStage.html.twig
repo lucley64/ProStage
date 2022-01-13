@@ -1,10 +1,71 @@
 {% extends 'base.html.twig' %}
 {% block nomPage %}
 
-<h1> Stage {{idRessource}}</h1>
+	<h1>Détails du stage
+	</h1>
 
-<p>
-	Ceci sont les details du stage num {{idRessource}}. 
-</p>
+
+	<table>
+		<tbody>
+			<tr>
+				<th>
+					Titre
+				</th>
+				<td>
+					{{stage.titre}}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Nom de l'entreprise
+				</th>
+				<td>
+					{{stage.entreprise.nom}}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Activité de l'entreprise
+				</th>
+				<td>
+					{{stage.entreprise.activite}}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Adresse de l'entreprise
+				</th>
+				<td>
+					{{stage.entreprise.adresse}}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Missions à réaliser
+				</th>
+				<td>
+					{{stage.missions}}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Formations concernées
+				</th>
+				<td>
+					{% for formation in stage.formations %}
+						{{formation.nom}}, 
+					{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Contact
+				</th>
+				<td>
+					{{stage.contact}}
+				</td>
+			</tr>
+		</tbody>
+	</table>
 
 {% endblock %}

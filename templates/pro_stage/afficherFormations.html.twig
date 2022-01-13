@@ -2,5 +2,27 @@
 {% block nomPage %}
 
 <h1> Formations </h1>
-
-{% endblock %}
+<table>
+	<thead>
+		<tr>
+			<th>
+				#
+			</th>
+			<th>
+				Nom de la formation
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for formation in formations %}
+			<tr>
+				<td>
+					<a class="nav-link" href="{{path('ProStage_detail_formation', {id:formation.id})}}">
+						{{formation.id}}</td>
+				</td>
+				<td>
+					{{formation.nom}}</td>
+			</tr>
+		</a>
+	</tbody>
+</tr>{% endfor %}</tbody></table>{% endblock %}

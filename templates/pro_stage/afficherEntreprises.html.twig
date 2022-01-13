@@ -1,18 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block nomPage %}
 
-	<h1>
-		Voici la liste des entreprises
-	</h1>
+<h1>
+	Voici la liste des entreprises
+</h1>
 
-	<table>
+<table>
 	<thead>
-	<tr>
-	<th>
-	#
-	</th>
-	{% for entreprise in entreprises %}
-		
-	{% endfor %}
-
-{% endblock %}
+		<tr>
+			<th>
+				#
+			</th>
+			<th>
+				Nom de l'entreprise
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for entreprise in entreprises %}
+			<tr>
+				<td>
+					<a class="nav-link" href="{{path('ProStage_detail_entreprise', {id:entreprise.id})}}">
+						{{entreprise.id}}</td>
+				</td>
+				<td>
+					{{entreprise.nom}}</td>
+			</tr>
+		</a>
+	</tbody>
+</tr>{% endfor %}</tbody></table>{% endblock %}
