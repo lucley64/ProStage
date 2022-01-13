@@ -93,10 +93,11 @@ class ProStageController extends AbstractController
 
         $formation = $reposFormation->find($id);
 
-        
+
 
         return $this->render(
             'pro_stage/affichageDetailFormation.html.twig',
+            ['formation' => $formation]
         );
     }
 }

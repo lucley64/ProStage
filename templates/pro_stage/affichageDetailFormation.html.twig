@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block nomPage %}
 
-	<h1>Détails de l'entreprise
+	<h1>Détails de la formation
 	</h1>
 
 
@@ -12,31 +12,15 @@
 					Nom
 				</th>
 				<td>
-					{{entreprise.nom}}
+					{{formation.nom}}
 				</td>
 			</tr>
 			<tr>
 				<th>
-					Adresse
+					Nom complet
 				</th>
 				<td>
-					{{entreprise.adresse}}
-				</td>
-			</tr>
-			<tr>
-				<th>
-					Activité
-				</th>
-				<td>
-					{{entreprise.activite}}
-				</td>
-			</tr>
-			<tr>
-				<th>
-					site
-				</th>
-				<td>
-					{{entreprise.site}}
+					{{formation.nomComplet}}
 				</td>
 			</tr>
 			<tr>
@@ -46,7 +30,7 @@
 				<td>
 					<table>
 						<tbody>
-							{% for stage in stages %}
+							{% for stage in formation.stages %}
 								<tr>
 									<td>
 										<a class="nav-link" href="{{path('ProStage_stage', {id:stage.id})}}">
