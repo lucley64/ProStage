@@ -19,7 +19,8 @@ class ProStageController extends AbstractController
      */
     public function index(StageRepository $reposStage): Response
     {
-        $stages = $reposStage->findAll();
+        // $stages = $reposStage->findAll();
+        $stages = $reposStage->findStagesAvecEntreprises();
 
         return $this->render(
             'pro_stage/index.html.twig',
@@ -70,13 +71,14 @@ class ProStageController extends AbstractController
      */
     public function afficherDetailEntreprise(Entreprise $entreprise, StageRepository $reposStage): Response
     {
-        $stages = $reposStage->findByEntreprise($entreprise);
+        // $stages = $reposStage->findByEntreprise($entreprise);
+        $stages = $reposStage->findStagesPourUneEntreprise($entreprise->getNom());
 
         return $this->render(
             'pro_stage/affichageDetailEntreprise.html.twig',
             [
                 'entreprise' => $entreprise,
-                'stages' => $stages
+                'stages'     => $stages
             ]
         );
     }
@@ -84,11 +86,17 @@ class ProStageController extends AbstractController
     /**
      * @Route("/formation/{id}", name="ProStage_detail_formation")
      */
-    public function afficherDetailFormation(Formation $formation): Response
+    public function afficherDetailFormation(Formation $formation, StageRepository $reposStage): Response
     {
+
+        $stages = $reposStage->findStagesPourUneFormation($formation->getNom());
+
         return $this->render(
             'pro_stage/affichageDetailFormation.html.twig',
-            ['formation' => $formation]
+            [
+                'formation' => $formation,
+                'stages'    => $stages
+            ]
         );
     }
 }
