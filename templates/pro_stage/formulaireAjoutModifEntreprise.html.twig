@@ -1,6 +1,10 @@
 {% extends "base.html.twig" %}
 {% block nomPage %}
-	Ajouter une entreprise
+	{% if action == "ajouter" %}
+		Ajouter une entreprise
+	{% else %}
+		Modifier une entreprise
+	{% endif %}
 {% endblock %}
 
 {% block liste %}
@@ -18,7 +22,7 @@
 					{{form_widget(vueFormulaireEntreprise.nom)}}
 				</td>
 			</tr>
-            <tr>
+			<tr>
 				<td>
 					{{form_label(vueFormulaireEntreprise.adresse)}}
 				</td>
@@ -29,7 +33,7 @@
 					{{form_widget(vueFormulaireEntreprise.adresse)}}
 				</td>
 			</tr>
-            <tr>
+			<tr>
 				<td>
 					{{form_label(vueFormulaireEntreprise.activite)}}
 				</td>
@@ -40,7 +44,7 @@
 					{{form_widget(vueFormulaireEntreprise.activite)}}
 				</td>
 			</tr>
-            <tr>
+			<tr>
 				<td>
 					{{form_label(vueFormulaireEntreprise.site)}}
 				</td>
@@ -54,6 +58,6 @@
 		</tbody>
 	</table>
 
-    <button type="submit" class="btn btn-dark">Enregistrer</button>
+	<button type="submit" class="btn btn-dark">Enregistrer</button>
 	{{ form_end(vueFormulaireEntreprise) }}
 {% endblock %}

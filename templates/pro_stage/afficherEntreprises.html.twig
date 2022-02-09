@@ -3,8 +3,9 @@
 
 <h1>
 	Voici la liste des entreprises
+	<a href="{{path('Prostage_ajout_entreprise')}}"> <i class="icon-plus-1"></i> <button class="btn btn-dark"> Ajouter une entreprise </button> </a>
 </h1>
-<a href="{{path('Prostage_ajout_entreprise')}}"> <button> Ajouter une entreprise </button> </a>
+
 <table>
 	<thead>
 		<tr>
@@ -25,6 +26,9 @@
 				</td>
 				<td>
 					{{entreprise.nom}}</td>
+				<td>
+					<a class="nav-link" href="{{path('ProStage_modification_entreprise', {id:entreprise.id})}}"> modifier </a>
+				</td>
 			</tr>
 		</a>
 	</tbody>

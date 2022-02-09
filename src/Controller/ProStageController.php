@@ -8,6 +8,7 @@ use App\Entity\Formation;
 use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
 use App\Repository\StageRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -94,9 +95,40 @@ class ProStageController extends AbstractController
         }
 
         return $this->render(
-            'pro_stage/formulaireAjoutEntreprise.html.twig',
+            'pro_stage/formulaireAjoutModifEntreprise.html.twig',
             [
-                'vueFormulaireEntreprise' => $formulaireEntreprise->createView()
+                'vueFormulaireEntreprise' => $formulaireEntreprise->createView(),
+                'action'                  => "ajouter"
+            ]
+        );
+    }
+
+    /**
+     * @Route("/entreprises/modifier/{id}", name="ProStage_modification_entreprise")
+     */
+    public function modifierEntreprise(Request $request, EntityManagerInterface $manager, Entreprise $entreprise)
+    {
+        $formulaireEntreprise = $this->createFormBuilder(($entreprise))
+            ->add('nom', TextType::class)
+            ->add('adresse', TextType::class)
+            ->add('activite', TextType::class)
+            ->add('site', UrlType::class)
+            ->getForm();
+
+        $formulaireEntreprise->handleRequest($request);
+
+        if ($formulaireEntreprise->isSubmitted()) {
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            return $this->redirectToRoute('ProStage_entreprises');
+        }
+
+        return $this->render(
+            'pro_stage/formulaireAjoutModifEntreprise.html.twig',
+            [
+                'vueFormulaireEntreprise' => $formulaireEntreprise->createView(),
+                'action'                  => "modifier"
             ]
         );
     }
