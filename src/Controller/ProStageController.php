@@ -11,6 +11,7 @@ use App\Repository\StageRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpFoundation\Request;
@@ -80,8 +81,8 @@ class ProStageController extends AbstractController
 
         $formulaireEntreprise = $this->createFormBuilder($entreprise)
             ->add('nom', TextType::class)
-            ->add('adresse', TextType::class)
-            ->add('activite', TextType::class)
+            ->add('adresse', TextareaType::class)
+            ->add('activite', TextareaType::class)
             ->add('site', UrlType::class)
             ->getForm();
 
@@ -110,8 +111,8 @@ class ProStageController extends AbstractController
     {
         $formulaireEntreprise = $this->createFormBuilder(($entreprise))
             ->add('nom', TextType::class)
-            ->add('adresse', TextType::class)
-            ->add('activite', TextType::class)
+            ->add('adresse', TextareaType::class)
+            ->add('activite', TextareaType::class)
             ->add('site', UrlType::class)
             ->getForm();
 
