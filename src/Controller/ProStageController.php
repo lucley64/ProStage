@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use App\Form\EntrepriseType;
+use App\Form\StageType;
 use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
 use App\Repository\StageRepository;
@@ -60,6 +62,34 @@ class ProStageController extends AbstractController
         );
     }
 
+    
+    /**
+     * @Route("/stages/ajout", name="ProStage_ajout_stage")
+     */
+    public function ajouterStage(Request $request, EntityManagerInterface $manager)
+    {
+        $stage = new Stage();
+
+        $formulaireStage = $this->createForm(StageType::class, $stage);
+
+        $formulaireStage->handleRequest($request);
+
+        if ($formulaireStage->isSubmitted() && $formulaireStage->isValid()){
+            $manager->persist($stage);
+            $manager->flush();
+
+            return $this->redirectToRoute('ProStage_accueil');
+        }
+
+        return $this->render(
+            'pro_stage/formulaireAjoutModifStage.html.twig',
+            [
+                'vueFormulaireStage' => $formulaireStage->createView(),
+                'acion' => "ajouter"
+            ]
+        );
+    }
+
     /**
      * @Route("/stages/{id}", name="ProStage_stage")
      */
@@ -79,12 +109,7 @@ class ProStageController extends AbstractController
     {
         $entreprise = new Entreprise();
 
-        $formulaireEntreprise = $this->createFormBuilder($entreprise)
-            ->add('nom', TextType::class)
-            ->add('adresse', TextareaType::class)
-            ->add('activite', TextareaType::class)
-            ->add('site', UrlType::class)
-            ->getForm();
+        $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
         $formulaireEntreprise->handleRequest($request);
 
@@ -109,12 +134,7 @@ class ProStageController extends AbstractController
      */
     public function modifierEntreprise(Request $request, EntityManagerInterface $manager, Entreprise $entreprise)
     {
-        $formulaireEntreprise = $this->createFormBuilder(($entreprise))
-            ->add('nom', TextType::class)
-            ->add('adresse', TextareaType::class)
-            ->add('activite', TextareaType::class)
-            ->add('site', UrlType::class)
-            ->getForm();
+        $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
         $formulaireEntreprise->handleRequest($request);
 

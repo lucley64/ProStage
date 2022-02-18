@@ -35,7 +35,7 @@ class Stage
     private $contact;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="stages")
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="stages", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $entreprise;
