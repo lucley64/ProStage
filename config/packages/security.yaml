@@ -1,14 +1,25 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+# security:
+#     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+#     providers:
+#         in_memory:
+#             memory:
+#                 users:
+#                     lleydert: { password: $2y$10$0BMZu8K1isI6MhJG6AXTb.AoG7rUOVzEAwsil8wPW8vWc./uwanX., roles: ROLE_ADMIN }
+#                     dnunez: { password: $2y$10$PJSSSi1AU9khRwBxJ/oVSuyXmXFS0/M3avHNnTO0R9iLwiLQfkArO, roles: ROLE_USER }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: lazy
-            provider: users_in_memory
+            anonymous: true
+            http_basic: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -19,5 +30,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/entreprises/ajout, roles: ROLE_ADMIN }
+        - { path: ^/stages/ajout, roles: ROLE_USER }
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: 
+            algorithm: bcrypt
+            cost: 10            
+        App\Entity\User:
+            algorithm: bcrypt
