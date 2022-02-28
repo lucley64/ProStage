@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -58,6 +59,23 @@ class AppFixtures extends Fixture
             $manager->persist($formation);
         }
 
+
+        $lleydert = new User();
+        $lleydert->setNom("Leydert");
+        $lleydert->setPrenom("Luc");
+        $lleydert->setEmail("lleydert");
+        $lleydert->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+        $lleydert->setPassword("$2y$10$0BMZu8K1isI6MhJG6AXTb.AoG7rUOVzEAwsil8wPW8vWc./uwanX.");
+        $manager->persist($lleydert);
+
+
+        $dnunez = new User();
+        $dnunez->setNom("Nunez");
+        $dnunez->setPrenom("Dorian");
+        $dnunez->setEmail("dnunez");
+        $dnunez->setRoles(["ROLE_USER"]);
+        $dnunez->setPassword('$2y$10$PJSSSi1AU9khRwBxJ/oVSuyXmXFS0/M3avHNnTO0R9iLwiLQfkArO');
+        $manager->persist($dnunez);
 
         $manager->flush();
     }
