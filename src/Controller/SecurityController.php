@@ -48,7 +48,7 @@ class SecurityController extends AbstractController
 
         $formInscription->handleRequest($request);
 
-        if ($formInscription->isSubmitted()) {
+        if ($formInscription->isSubmitted() && $formInscription->isValid()) {
             return $this->redirectToRoute('ProStage_accueil');
         }
         return $this->render(
