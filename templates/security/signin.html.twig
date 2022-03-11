@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block nomPage %}Inscrivez-vous!{% endblock %}
+
+{% block liste %}
+<form method="post">
+    {{form_start(formInscription)}}
+    {{form_row(formInscription.prenom)}}
+    {{form_row(formInscription.nom)}}
+    {{form_row(formInscription.email)}}
+    {{form_row(formInscription.password)}}
+    {{form_end(formInscription)}}
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Connexion
+    </button>
+</form>
+{% endblock %}
