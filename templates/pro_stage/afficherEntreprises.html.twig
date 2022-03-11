@@ -3,7 +3,15 @@
 
 <h1>
 	Voici la liste des entreprises
-	<a href="{{path('Prostage_ajout_entreprise')}}"> <i class="icon-plus-1"></i> <button class="btn btn-dark"> Ajouter une entreprise </button> </a>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{path('Prostage_ajout_entreprise')}}">
+			<i class="icon-plus-1"></i>
+			<button class="btn btn-dark">
+				Ajouter une entreprise
+			</button>
+		</a>
+	{% endif %}
+
 </h1>
 
 <table>
@@ -26,9 +34,14 @@
 				</td>
 				<td>
 					{{entreprise.nom}}</td>
-				<td>
-					<a class="nav-link" href="{{path('ProStage_modification_entreprise', {id:entreprise.id})}}"> modifier </a>
-				</td>
+				{% if is_granted('ROLE_USER') %}
+					<td>
+						<a class="nav-link" href="{{path('ProStage_modification_entreprise', {id:entreprise.id})}}">
+							modifier
+						</a>
+					</td>
+				{% endif %}
+
 			</tr>
 		</a>
 	</tbody>

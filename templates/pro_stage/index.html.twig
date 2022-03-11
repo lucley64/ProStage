@@ -8,7 +8,16 @@
 {% block liste %}
 	<p>
 		voici quelques stages:
-		<a href="{{path('ProStage_ajout_stage')}}"> <i class="icon-plus-1"></i> <button class="btn btn-dark"> Ajouter un stage </button> </a>
+		{% if is_granted('ROLE_USER') %}
+			<a href="{{path('ProStage_ajout_stage')}}">
+				<i class="icon-plus-1"></i>
+				<button class="btn btn-dark">
+					Ajouter un stage
+				</button>
+				<span class="sr-only">(current)</span>
+			</a>
+		{% endif %}
+
 	</p>
 
 	<table>

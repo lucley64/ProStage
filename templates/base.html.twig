@@ -10,7 +10,7 @@
 		<meta
 		name="viewport" content="width=device-width, initial-scale=1">
 		{# Run `composer require symfony/webpack-encore-bundle`
-																				           and uncomment the following Encore helpers to start using Symfony UX #}
+																										           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			<link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
 			<link href="{{asset('/css/fontello.css')}}" rel="stylesheet">
@@ -65,6 +65,36 @@
 											<li class="nav-item">
 												<a class="nav-link" href="{{path('ProStage_formations')}}">Filtrer par formation</a>
 											</li>
+										</ul>
+										<ul class="navbar-nav ml-md-auto">
+											{% if is_granted('ROLE_ADMIN') %}
+												<li class="nav-item active">
+													<a class="nav-link" href="{{path('ProStage_accueil')}}">
+														<i class="icon-plus-1"></i>
+														Gérer les stages
+														<span class="sr-only">(current)</span>
+													</a>
+												</li>
+											{% endif %}
+											{% if is_granted('ROLE_USER') %}
+												<li class="nav-item active">
+													<a class="nav-link" href="{{path('app_logout')}}">
+														{{ app.user.prenom }}
+														{{ app.user.nom }}
+														<i class="icon-user"></i>
+														Déconnexion
+														<span class="sr-only">(current)</span>
+													</a>
+												</li>
+											{% else %}
+												<li class="nav-item active">
+													<a class="nav-link" href="{{path('app_login')}}">
+														<i class="icon-user"></i>
+														Connexion
+														<span class="sr-only">(current)</span>
+													</a>
+												</li>
+											{% endif %}
 										</ul>
 									</div>
 								</nav>

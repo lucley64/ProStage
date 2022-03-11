@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -31,6 +35,25 @@ class SecurityController extends AbstractController
      */
     public function logout(): void
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    /**
+     * @Route("/signin", name="app_signin")
+     */
+    public function signin(Request $request, EntityManagerInterface $manager): Response
+    {
+        $user = new User();
+
+        $formInscription = $this->createForm(UserType::class, $user);
+
+        $formInscription->handleRequest($request);
+
+        if ($formInscription->isSubmitted()) {
+            return $this->redirectToRoute('ProStage_accueil');
+        }
+        return $this->render(
+            "security/signin.html.twig",
+            ["formInscription" => $formInscription->createView()]
+        );
     }
 }
