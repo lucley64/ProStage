@@ -20,9 +20,10 @@ class UserType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type'=>PasswordType::class,
                 'invalid_message'=>"Les mots de passes doivent être les mêmes",
-                'option'=>['attr'=>['class'=>'password_field']],
-                'requied'=>true,
-                ''
+                'options'=>['attr'=>['class'=>'password_field']],
+                'required'=>true,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Répétez la saisie du mot de passe']
             ]);
     }
 
