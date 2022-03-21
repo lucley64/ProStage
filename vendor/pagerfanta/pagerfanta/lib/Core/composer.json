@@ -1,0 +1,19 @@
+{
+    "name": "pagerfanta/core",
+    "type": "library",
+    "description": "Core Pagerfanta API",
+    "keywords": ["pagerfanta"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.2 || ^8.0",
+        "ext-json": "*",
+        "symfony/deprecation-contracts": "^2.1",
+        "symfony/polyfill-php80": "^1.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pagerfanta\\": "./"
+        }
+    },
+    "minimum-stability": "dev"
+}

@@ -10,7 +10,7 @@
 		<meta
 		name="viewport" content="width=device-width, initial-scale=1">
 		{# Run `composer require symfony/webpack-encore-bundle`
-																										           and uncomment the following Encore helpers to start using Symfony UX #}
+																												           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			<link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
 			<link href="{{asset('/css/fontello.css')}}" rel="stylesheet">
@@ -63,7 +63,11 @@
 												<a class="nav-link" href="{{path('ProStage_entreprises')}}">Filtrer par entreprise</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="{{path('ProStage_formations')}}">Filtrer par formation</a>
+												{% if is_granted('ROLE_ADMIN') %}
+													<a class="nav-link" href="{{path('formation_index')}}">Filtrer par formation</a>
+												{% else %}
+													<a class="nav-link" href="{{path('ProStage_formations')}}">Filtrer par formation</a>
+												{% endif %}
 											</li>
 										</ul>
 										<ul class="navbar-nav ml-md-auto">
@@ -91,13 +95,13 @@
 														Connexion
 													</a>
 												</li>
-											{% endif %}
 												<li class="nav-item active">
 													<a class="nav-link" href="{{path('app_signin')}}">
 														<i class="icon-user"></i>
 														Inscription
 													</a>
 												</li>
+											{% endif %}
 										</ul>
 									</div>
 								</nav>
